@@ -24,7 +24,7 @@ public class DemoApplication {
 	public HikariDataSource dataSource(DataSourceProperties properties) {
 		return properties.initializeDataSourceBuilder().type(HikariDataSource.class).build();
 	}
-
+	
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 	}

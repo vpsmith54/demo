@@ -11,8 +11,8 @@ public class AddressRowMapper implements RowMapper<Address> {
     public Address mapRow(ResultSet resultSet, int rowNum) throws SQLException {
         Long id = resultSet.getLong("id");
         String name = resultSet.getString("name");
-        String addressLine1 = resultSet.getString("addressLine1");
-        String addressLine2 = resultSet.getString("addressLine2");
+        String addressLine1 = resultSet.getString("address_line1");
+        String addressLine2 = resultSet.getString("address_line2");
         String city = resultSet.getString("city");
         String state = resultSet.getString("state");
         String zip = resultSet.getString("zip");

@@ -127,6 +127,7 @@ public class Address {
         parameters.put("address_line1", this.addressLine1);
         parameters.put("address_line2", this.addressLine2);
         parameters.put("city", this.city);
+        parameters.put("state", this.state);
         parameters.put("zip", this.zip);
         return parameters;
     }

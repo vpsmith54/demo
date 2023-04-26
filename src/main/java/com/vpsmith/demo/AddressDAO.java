@@ -30,8 +30,6 @@ public class AddressDAO {
 
     @Transactional
     public Address insert(Address address) {
-        // Number id = insert.executeAndReturnKey(new
-        // BeanPropertySqlParameterSource(car));
         Number id = insert.executeAndReturnKey(address.toMap());
         return findBy(id.longValue()).orElseThrow(() -> new IllegalStateException(""));
     }

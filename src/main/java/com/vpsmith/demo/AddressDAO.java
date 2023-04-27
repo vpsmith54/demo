@@ -36,7 +36,7 @@ public class AddressDAO {
 
     public Optional<Address> findBy(Long id) {
         String sql = queries.getFindById();
-        Map<String, Object> parameters = Collections.singletonMap("id", id);
+        Map<String, Object> parameters = Collections.singletonMap(":id", id);
         return template.queryForStream(sql, parameters, rowMapper).findFirst();
     }
 

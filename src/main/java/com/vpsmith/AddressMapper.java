@@ -10,9 +10,10 @@ public abstract class AddressMapper {
                 dto.getState(), dto.getZip());
     };
 
-    public static AddressDTO toDTO(Address address){
-        return new AddressDTO(address.getId(), address.getName(), address.getAddressLine1(), address.getAddressLine2(), address.getCity(),
-        address.getState(), address.getZip());
+    public static AddressDTO toDTO(Address address) {
+        return new AddressDTO(address.getId(), address.getName(), address.getAddressLine1(), address.getAddressLine2(),
+                address.getCity(),
+                address.getState(), address.getZip());
     }
 
 }

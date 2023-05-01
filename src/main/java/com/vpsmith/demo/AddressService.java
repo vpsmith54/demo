@@ -2,11 +2,8 @@ package com.vpsmith.demo;
 
 import org.springframework.stereotype.Service;
 
-import com.vpsmith.AddressMapper;
-
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
@@ -18,27 +15,25 @@ public class AddressService {
         this.dao = dao;
     }
 
-    public List<AddressDTO> findAll() {
+    public List<Address> findAll() {
         Stream<Address> stream = dao.findAll();
-        return stream.map(AddressMapper::toDTO)
-                .collect(Collectors.toList());
+        return stream.toList();
     }
 
-    public Optional<AddressDTO> findById(Long id) {
-        return dao.findBy(id).map(AddressMapper::toDTO);
+    public Optional<Address> findById(Long id) {
+        return dao.findBy(id);
     }
 
-    public AddressDTO insert(AddressDTO dto) {
-        Address address = AddressMapper.toEntity(dto);
-        return AddressMapper.toDTO(dao.insert(address));
+    public Address insert(Address dto) {
+        return dao.insert(dto);
     }
 
-    public AddressDTO update(Long id, AddressDTO dto) {
+    public Address update(Long id, Address dto) {
         Address address = dao.findBy(id)
                 .orElseThrow(() -> new RuntimeException("Address not found with the id " + id));
-        address.update(AddressMapper.toEntity(dto));
+        address.update(dto);
         dao.update(address);
-        return AddressMapper.toDTO(address);
+        return address;
     }
 
     public void delete(Long id) {

@@ -1,6 +1,8 @@
 package com.vpsmith.demo;
 
-public class AddressDTO {
+import org.springframework.hateoas.RepresentationModel;
+
+public class AddressDTO extends RepresentationModel<AddressDTO> {
 
     private long id;
     private String name;
@@ -96,7 +98,7 @@ public class AddressDTO {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (this == obj)
             return true;
         if (obj == null)

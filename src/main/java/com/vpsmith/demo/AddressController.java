@@ -63,8 +63,12 @@ public class AddressController {
     }
 
     @PostMapping(produces = { "application/hal+json" })
-    public EntityModel<AddressDTO> insert(@RequestBody AddressDTO dto) {
-        return new ResponseEntity<>(service.insert(dto), HttpStatus.CREATED);
+    public ResponseEntity<AddressDTO> insert(@RequestBody AddressDTO dto) {
+        Address address = service.insert(toEntity(dto));
+        AddressDTO returnDto = toDTO(address);
+        Link selfLink = linkTo(AddressController.class).slash(returnDto.getId()).withSelfRel();
+        returnDto.add(selfLink);
+        return new ResponseEntity<>(returnDto, HttpStatus.CREATED);
     }
 
     @PutMapping(value = "{id}", produces = { "application/hal+json" })

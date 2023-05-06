@@ -132,13 +132,13 @@ public class Address {
         return parameters;
     }
 
-    void update(Address address) {
-        this.name = address.name;
-        this.addressLine1 = address.addressLine1;
-        this.addressLine2 = address.addressLine2;
-        this.city = address.city;
-        this.state = address.state;
-        this.zip = address.zip;
+    void update(Address anAddress) {
+        this.name = anAddress.getName();
+        this.addressLine1 = anAddress.getAddressLine1();
+        this.addressLine2 = anAddress.getAddressLine2();
+        this.city = anAddress.getCity();
+        this.state = anAddress.getState();
+        this.zip = anAddress.getZip();
     }
 
     @Override

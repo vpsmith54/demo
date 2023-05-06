@@ -9,7 +9,7 @@ import java.util.Optional;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.Link;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +26,7 @@ import static com.vpsmith.AddressMapper.*;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 @RestController
-@RequestMapping("/address")
+@RequestMapping("/demo/address")
 public class AddressController {
 
     private final AddressService service;
@@ -63,12 +63,11 @@ public class AddressController {
     }
 
     @PostMapping(produces = { "application/hal+json" })
-    public ResponseEntity<AddressDTO> insert(@RequestBody AddressDTO dto) {
+    public HttpEntity<AddressDTO> insert(@RequestBody AddressDTO dto) {
         Address address = service.insert(toEntity(dto));
         AddressDTO returnDto = toDTO(address);
         Link selfLink = linkTo(AddressController.class).slash(returnDto.getId()).withSelfRel();
-        returnDto.add(selfLink);
-        return new ResponseEntity<>(returnDto, HttpStatus.CREATED);
+        return ResponseEntity.created(selfLink.toUri()).body(returnDto);
     }
 
     @PutMapping(value = "{id}", produces = { "application/hal+json" })
